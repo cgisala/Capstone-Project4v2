@@ -11,9 +11,8 @@ def get_weather_data(city):
     location = f'{city},us'  # city and country
     query = {'q': location, 'units':'imperial', 'appid': key} # formats the location, units, and API key into a dictionary
     api_data = api_connection(url, query)
-    weather_data = object_empty(api_data)
     
-    return weather_data
+    return api_data
 
 def api_connection(url, query):
     """
@@ -24,12 +23,3 @@ def api_connection(url, query):
         return data
     except:
         print('Error - unable to connect to the API server')
-
-def object_empty(data):
-    """
-    Checks to see if weather data is empty
-    """
-    if data is None:
-        print('Error - there is no data in the object')
-    else:
-        return data
