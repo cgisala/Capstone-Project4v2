@@ -1,35 +1,37 @@
-"""
-get weather for the city
-"""
-
+import requests
 from dataclasses import dataclass
 
 """ Think about what data to return? """
 
-def get_forecast(city):
-    
-    # make api call
-    # make Forecast objects 
-    # return list of Forecast objects
-
-    response = make_api_call(city)
-
-    list_forecasts  = process_json(response)
+def get_current_weather(city):
+    """
+    This function gets the city and gets the current weather data
+    """    
+    response = current_weather_api_call(city)
+    list_forecasts  = process_current_weather_json(response)
 
     return list_forecasts
 
+def current_weather_api_call(city):
+    """
+    Calls the call api server and gets the current weather data and returns dictionary of data
+    """
 
-def make_api_call(city):
-    # fill in here 
-    return {}   
+    url = 'https://api.openweathermap.org/data/2.5/weather' 
+    key = '931ff5eff05bb2caa4f58e70a64f78bb' #api key
+    location = f'{city}, us'
+    query = {'q': location, 'units':'imperial', 'appid': key} # formats the location, units, and API key into a dictionary
+
+    return requests.get(url, params=query).json()
 
 
-def process_json(json):
-
-    # use actual data from json
-    today = Forecast('sunshine', 30)
-    tomorrow = Forecast('cloudy', 23)
-    return [today, tomorrow]
+def process_current_weather_json(json):
+    """
+    Process the json and extract the current temp and weather description
+    """
+    
+    today = Forecast(json['weather'][0]['description'], json['main']['temp'])
+    return today
 
 
 @dataclass
