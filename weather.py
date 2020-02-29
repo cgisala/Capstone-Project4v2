@@ -1,3 +1,7 @@
+"""
+This module uses the openweathermap api, process the response, and returns a list of the current weather description and average temperature
+"""
+
 import requests
 from dataclasses import dataclass
 
@@ -16,7 +20,6 @@ def current_weather_api_call(city):
     """
     Calls the call api server and gets the current weather data and returns dictionary of data
     """
-
     url = 'https://api.openweathermap.org/data/2.5/weather' 
     key = '931ff5eff05bb2caa4f58e70a64f78bb' #api key
     location = f'{city}, us'
@@ -29,7 +32,6 @@ def process_current_weather_json(json):
     """
     Process the json and extract the current temp and weather description
     """
-    
     today = Forecast(json['weather'][0]['description'], json['main']['temp'])
     return today
 
