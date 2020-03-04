@@ -11,7 +11,7 @@ show all bookmark()
 
 # think about table(s)
 
-def save(rest, news, weather):
+def save(rest, events, weather):
     # save these things to the database
     pass 
 

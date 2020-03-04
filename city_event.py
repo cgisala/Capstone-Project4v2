@@ -1,16 +1,17 @@
+import search
+import requests
+from pprint import pprint
+from requests import HTTPError
+
 """
 get events for the city
 """
 
 """ think about what data you will return """
 
-import requests
-from pprint import pprint
-from requests import HTTPError
 
-
-def get_events():
-    search_term, city = getInput()
+def get_events(search_term, city):
+    search_term, city = search
     query = {'keyword': search_term, 'location': city}
 
     # Exception handler
@@ -28,10 +29,6 @@ def get_events():
 
     get_events()
 
-
 # user input
-def getInput():
-    search_term = input("Enter event keywords you are looking for : ")
-    city = input("Enter the city name :  ")
-
-    return search_term, city
+##def getInput():
+###### return search_term, city
