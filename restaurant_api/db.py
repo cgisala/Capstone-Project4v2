@@ -2,19 +2,18 @@
 save bookmark(data)
 show all bookmark()
 """
-from rest import*
+from rest import Restaurant
 from weather import Forecast
 from datetime import datetime
 import sqlite3
 import os
-conn = sqlite3.connect('Travel_app.sqlite')
+conn = sqlite3.connect('Travel_app.sqlite')# create the database
 cur = conn.cursor()
 conn.execute('create table if not exists Travle_tip( Top_restaurants text, Top_news text, Top_weather text, Date_saved date)')
 conn.execute('create table if not exists Restaurant ( Name text, Address text, Rating integer )')
 conn.execute('create table if not exists Weather ( Description text, Tempreture float )')
 # conn.execute('drop table Restaurant')# will drop table when needed
 # conn.commit()
-
 
 
 
@@ -27,11 +26,11 @@ conn.execute('create table if not exists Weather ( Description text, Tempreture 
 
 # think about table(s)
 
-## def save(rest, news, weather):
-##     # save these things to the database
-##     pass
+# def save(rest, news, weather):
+#     # save these things to the database
+#     pass
 def save(rest, weather):
-    #save the restaurant that the user book-marded.
+    #save method the restaurant that the user book-marked.
     rest = Restaurant("name", "address", 1) 
     row = conn.execute('insert into travel_tip(name, address, rating) values (?, ?, ?)', (rest.name, rest.address, rest.rating ))
 
@@ -42,9 +41,9 @@ def save(rest, weather):
    
 
 
-## def get_all():
-#     # get all things, organize into list ?  and return 
-##     return []
+# def get_all():
+    # get all things, organize into list ?  and return 
+#     return []
 
 def get_all(city):
     rest_list = []
@@ -54,8 +53,9 @@ def get_all(city):
     for row in cur.fetchall():
         rest_list.append(row)
     return rest_list
-    ## rows = con.execute(get_all_sql)
-    ## Restaurants = []
-    ## print([rows])
+
+rows = conn.execute(get_all)
+Restaurants = []
+print([rows])
    
 
