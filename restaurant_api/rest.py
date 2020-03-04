@@ -1,14 +1,12 @@
-from search import *
+#from search import *
 import requests
 from weather import Forecast
 import db
 import os
 
-
+#Restaurant class and its atributes are created
 class Restaurant():
     def __init__(self, name, address, rating):
-        #self.type= type
-        #self.city = city
         self.name = name
         self.address = address
         self.rating = rating
@@ -19,7 +17,7 @@ url ='https://api.yelp.com/v3/businesses/search'
 """
 get restaurant for the city
 """ 
-    
+#get the restaurant info put it into the list    
 def get_restaurants():
     name_info = []
     address_info =[]
@@ -47,7 +45,7 @@ def get_restaurants():
 
     #return "caribou coffee"
     # todo make api call 
-    
+ #loop through and pring in list   
 r_name, r_address, r_rating = get_restaurants()
 for r in range(len(r_name)):
     print(f'{r_name[r]} {r_address[r]} {r_rating[r]} ')
